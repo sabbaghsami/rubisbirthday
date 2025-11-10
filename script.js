@@ -1,8 +1,24 @@
 // Canvas setup
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+// Set canvas dimensions based on device
+function setCanvasDimensions() {
+    const isPhone = window.innerWidth < 768;
+    const isLandscape = window.innerWidth > window.innerHeight;
+
+    if (isPhone && isLandscape) {
+        // Phone in landscape: use specific dimensions
+        canvas.width = 1072;
+        canvas.height = 453;
+    } else {
+        // All other cases: use full screen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+}
+
+setCanvasDimensions();
 
 // Constants
 const COLORS = [
@@ -317,12 +333,9 @@ class ImagePopup {
     }
 }
 
-// Media query for mobile detection
-const mobileQuery = window.matchMedia("(max-width: 768px)");
-
-// Helper function to check if mobile using matchMedia
+// Helper function to check if mobile
 function isMobileDevice() {
-    return mobileQuery.matches;
+    return window.innerWidth < 768;
 }
 
 // Game state
@@ -506,8 +519,7 @@ window.addEventListener('keydown', (e) => {
 
 // Handle window resize and orientation change
 function handleResize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    setCanvasDimensions();
 
     // Recalculate mobile settings dynamically
     const isMobileNow = isMobileDevice();
@@ -526,12 +538,6 @@ function handleResize() {
 window.addEventListener('resize', handleResize);
 window.addEventListener('orientationchange', () => {
     setTimeout(handleResize, 100); // Small delay for orientation change
-});
-
-// Listen for media query changes (more efficient than resize)
-mobileQuery.addEventListener('change', (e) => {
-    console.log(e.matches ? "Mobile layout active" : "Desktop layout active");
-    handleResize();
 });
 
 // Start animation
