@@ -256,10 +256,10 @@ class ImagePopup {
     constructor(image) {
         this.image = image;
 
-        // Responsive sizing
-        const isMobile = canvas.width < 768;
-        const maxSize = isMobile ? canvas.width * 0.7 : 600;
-        const minSize = isMobile ? canvas.width * 0.5 : 350;
+        // Responsive sizing based on current screen
+        const isMobile = isMobileDevice();
+        const maxSize = isMobile ? Math.min(canvas.width * 0.8, canvas.height * 0.6) : 600;
+        const minSize = isMobile ? Math.min(canvas.width * 0.6, canvas.height * 0.4) : 350;
         this.size = Math.random() * (maxSize - minSize) + minSize;
 
         const aspect = image.width / image.height;
@@ -271,10 +271,12 @@ class ImagePopup {
             this.width = this.size * aspect;
         }
 
-        // Better positioning for mobile
-        const padding = isMobile ? 20 : 100;
-        this.x = Math.random() * (canvas.width - this.width - padding * 2) + padding;
-        this.y = Math.random() * (canvas.height - this.height - padding * 2) + padding;
+        // Better positioning - ensure it fits on screen
+        const padding = isMobile ? 10 : 100;
+        const maxX = Math.max(canvas.width - this.width - padding * 2, padding);
+        const maxY = Math.max(canvas.height - this.height - padding * 2, padding);
+        this.x = Math.random() * Math.max(maxX - padding, 0) + padding;
+        this.y = Math.random() * Math.max(maxY - padding, 0) + padding;
 
         this.lifetime = 180;
         this.maxLifetime = 180;
@@ -315,11 +317,15 @@ class ImagePopup {
     }
 }
 
+// Helper function to check if mobile
+function isMobileDevice() {
+    return window.innerWidth < 768;
+}
+
 // Game state
 const fireworks = [];
-const isMobile = window.innerWidth < 768;
-const cakeScale = isMobile ? 0.8 : 1.2;
-const cakeYOffset = isMobile ? 100 : 150;
+const cakeScale = isMobileDevice() ? 0.8 : 1.2;
+const cakeYOffset = isMobileDevice() ? 100 : 150;
 const cakes = [
     new BirthdayCake(canvas.width * 0.25, canvas.height - cakeYOffset, cakeScale),
     new BirthdayCake(canvas.width * 0.75, canvas.height - cakeYOffset, cakeScale)
@@ -376,12 +382,12 @@ function drawBackground() {
 
 // Draw text
 function drawText() {
-    // Responsive font sizes
-    const isMobile = canvas.width < 768;
+    // Responsive font sizes - recalculated every frame
+    const isMobile = isMobileDevice();
     const titleSize = isMobile ? Math.min(canvas.width / 6, 50) : 80;
     const nameSize = isMobile ? Math.min(canvas.width / 10, 35) : 50;
-    const titleY = isMobile ? canvas.height * 0.08 : 100;
-    const nameY = isMobile ? canvas.height * 0.14 : 170;
+    const titleY = isMobile ? Math.max(canvas.height * 0.08, 50) : 100;
+    const nameY = isMobile ? Math.max(canvas.height * 0.14, 90) : 170;
 
     // Title with glow
     ctx.save();
@@ -495,13 +501,13 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-// Handle window resize
-window.addEventListener('resize', () => {
+// Handle window resize and orientation change
+function handleResize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Recalculate mobile settings
-    const isMobileNow = window.innerWidth < 768;
+    // Recalculate mobile settings dynamically
+    const isMobileNow = isMobileDevice();
     const newCakeScale = isMobileNow ? 0.8 : 1.2;
     const newCakeYOffset = isMobileNow ? 100 : 150;
 
@@ -512,6 +518,11 @@ window.addEventListener('resize', () => {
     cakes[1].x = canvas.width * 0.75;
     cakes[1].y = canvas.height - newCakeYOffset;
     cakes[1].scale = newCakeScale;
+}
+
+window.addEventListener('resize', handleResize);
+window.addEventListener('orientationchange', () => {
+    setTimeout(handleResize, 100); // Small delay for orientation change
 });
 
 // Start animation
