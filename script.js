@@ -255,7 +255,12 @@ class BirthdayCake {
 class ImagePopup {
     constructor(image) {
         this.image = image;
-        this.size = Math.random() * 250 + 350; // Bigger: 350-600px instead of 200-400px
+
+        // Responsive sizing
+        const isMobile = canvas.width < 768;
+        const maxSize = isMobile ? canvas.width * 0.7 : 600;
+        const minSize = isMobile ? canvas.width * 0.5 : 350;
+        this.size = Math.random() * (maxSize - minSize) + minSize;
 
         const aspect = image.width / image.height;
         if (aspect > 1) {
@@ -266,8 +271,10 @@ class ImagePopup {
             this.width = this.size * aspect;
         }
 
-        this.x = Math.random() * (canvas.width - this.width - 200) + 100;
-        this.y = Math.random() * (canvas.height - this.height - 200) + 100;
+        // Better positioning for mobile
+        const padding = isMobile ? 20 : 100;
+        this.x = Math.random() * (canvas.width - this.width - padding * 2) + padding;
+        this.y = Math.random() * (canvas.height - this.height - padding * 2) + padding;
 
         this.lifetime = 180;
         this.maxLifetime = 180;
@@ -310,9 +317,12 @@ class ImagePopup {
 
 // Game state
 const fireworks = [];
+const isMobile = window.innerWidth < 768;
+const cakeScale = isMobile ? 0.8 : 1.2;
+const cakeYOffset = isMobile ? 100 : 150;
 const cakes = [
-    new BirthdayCake(canvas.width * 0.25, canvas.height - 150, 1.2),
-    new BirthdayCake(canvas.width * 0.75, canvas.height - 150, 1.2)
+    new BirthdayCake(canvas.width * 0.25, canvas.height - cakeYOffset, cakeScale),
+    new BirthdayCake(canvas.width * 0.75, canvas.height - cakeYOffset, cakeScale)
 ];
 
 let fireworkTimer = 0;
@@ -366,20 +376,27 @@ function drawBackground() {
 
 // Draw text
 function drawText() {
+    // Responsive font sizes
+    const isMobile = canvas.width < 768;
+    const titleSize = isMobile ? Math.min(canvas.width / 6, 50) : 80;
+    const nameSize = isMobile ? Math.min(canvas.width / 10, 35) : 50;
+    const titleY = isMobile ? canvas.height * 0.08 : 100;
+    const nameY = isMobile ? canvas.height * 0.14 : 170;
+
     // Title with glow
     ctx.save();
     ctx.shadowBlur = 20;
     ctx.shadowColor = 'rgba(255, 215, 0, 0.8)';
     ctx.fillStyle = '#FFD700';
-    ctx.font = 'bold 80px Arial';
+    ctx.font = `bold ${titleSize}px Arial`;
     ctx.textAlign = 'center';
-    ctx.fillText('Happy 22nd Birthday!', canvas.width / 2, 100);
+    ctx.fillText('Happy 22nd Birthday!', canvas.width / 2, titleY);
     ctx.restore();
 
     // Name
     ctx.fillStyle = '#FF69B4';
-    ctx.font = 'bold 50px Arial';
-    ctx.fillText('RUBI', canvas.width / 2, 170);
+    ctx.font = `bold ${nameSize}px Arial`;
+    ctx.fillText('RUBI', canvas.width / 2, nameY);
 }
 
 // Auto-launch fireworks
@@ -442,14 +459,27 @@ function animate() {
 }
 
 // Event listeners
-canvas.addEventListener('click', (e) => {
-    fireworks.push(new Firework(e.clientX, canvas.height));
+function launchFireworkAtPosition(x) {
+    fireworks.push(new Firework(x, canvas.height));
 
     // Start music on first interaction
     if (!musicStarted) {
         bgMusic.play().catch(err => console.log('Music autoplay blocked'));
         musicStarted = true;
     }
+}
+
+canvas.addEventListener('click', (e) => {
+    launchFireworkAtPosition(e.clientX);
+});
+
+// Touch support for mobile
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    launchFireworkAtPosition(x);
 });
 
 window.addEventListener('keydown', (e) => {
@@ -470,11 +500,18 @@ window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Reposition cakes
+    // Recalculate mobile settings
+    const isMobileNow = window.innerWidth < 768;
+    const newCakeScale = isMobileNow ? 0.8 : 1.2;
+    const newCakeYOffset = isMobileNow ? 100 : 150;
+
+    // Update cakes
     cakes[0].x = canvas.width * 0.25;
-    cakes[0].y = canvas.height - 150;
+    cakes[0].y = canvas.height - newCakeYOffset;
+    cakes[0].scale = newCakeScale;
     cakes[1].x = canvas.width * 0.75;
-    cakes[1].y = canvas.height - 150;
+    cakes[1].y = canvas.height - newCakeYOffset;
+    cakes[1].scale = newCakeScale;
 });
 
 // Start animation
