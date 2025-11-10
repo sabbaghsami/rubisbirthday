@@ -1,0 +1,16 @@
+{
+  "name": "rubi-birthday-celebration",
+  "version": "1.0.0",
+  "description": "Happy 22nd Birthday Rubi! 🎂🎉",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["birthday", "celebration", "fireworks"],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
