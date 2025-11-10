@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const mimeTypes = {
     '.html': 'text/html',
@@ -42,7 +42,7 @@ const server = http.createServer((req, res) => {
     });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
     console.log(`🎂 Birthday app server running at http://localhost:${PORT}`);
     console.log(`🎉 Open your browser and visit: http://localhost:${PORT}`);
 });
