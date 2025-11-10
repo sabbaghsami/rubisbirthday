@@ -317,9 +317,12 @@ class ImagePopup {
     }
 }
 
-// Helper function to check if mobile
+// Media query for mobile detection
+const mobileQuery = window.matchMedia("(max-width: 768px)");
+
+// Helper function to check if mobile using matchMedia
 function isMobileDevice() {
-    return window.innerWidth < 768;
+    return mobileQuery.matches;
 }
 
 // Game state
@@ -523,6 +526,12 @@ function handleResize() {
 window.addEventListener('resize', handleResize);
 window.addEventListener('orientationchange', () => {
     setTimeout(handleResize, 100); // Small delay for orientation change
+});
+
+// Listen for media query changes (more efficient than resize)
+mobileQuery.addEventListener('change', (e) => {
+    console.log(e.matches ? "Mobile layout active" : "Desktop layout active");
+    handleResize();
 });
 
 // Start animation
