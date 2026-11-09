@@ -1,17 +1,17 @@
 // Edit the wording, links and image below, then refresh the page.
 // Keep the keys on the left unchanged. Values are plain text (no HTML needed).
 window.ITINERARY_CONFIG = {
-  "stop_1_photo_path": "assets/stops/stop-1.png",
+  "stop_1_photo_path": "assets/stops/stop-1.jpg",
   "stop_1_photo_description": "Rubi riding a horse in a deliberately homemade photo collage",
-  "stop_2_photo_path": "assets/stops/stop-2-v2.png",
+  "stop_2_photo_path": "assets/stops/stop-2-v2.jpg",
   "stop_2_photo_description": "Rubi browsing animal portraits at Tynemouth Markets in a photo collage",
-  "stop_3_photo_path": "assets/stops/stop-3.png",
+  "stop_3_photo_path": "assets/stops/stop-3.jpg",
   "stop_3_photo_description": "Rubi settling into a coastal holiday flat in a photo collage",
-  "stop_4_photo_path": "assets/stops/stop-4.png",
+  "stop_4_photo_path": "assets/stops/stop-4.jpg",
   "stop_4_photo_description": "Rubi with fish and chips on Long Sands Beach in a photo collage",
-  "stop_5_photo_path": "assets/stops/stop-5-v2.png",
+  "stop_5_photo_path": "assets/stops/stop-5-v2.jpg",
   "stop_5_photo_description": "Rubi having seafood by the bay in a photo collage",
-  "stop_6_photo_path": "assets/stops/stop-6-v2.png",
+  "stop_6_photo_path": "assets/stops/stop-6-v2.jpg",
   "stop_6_photo_description": "Rubi under blankets beside a beach fire pit in a photo collage",
 
   "page_title": "A little birthday adventure · Rubi's 23rd",
