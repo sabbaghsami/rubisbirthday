@@ -21,3 +21,28 @@ body {
     height: auto;
     cursor: crosshair;
 }
+
+.age-btn {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1.5px solid #ff69b4;
+    color: #ffd700;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 14px rgba(255, 105, 180, 0.6);
+    animation: agePulse 2s ease-in-out infinite;
+    white-space: nowrap;
+}
+.age-btn:hover { background: rgba(255, 105, 180, 0.35); }
+@keyframes agePulse {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 105, 180, 0.5); }
+    50% { box-shadow: 0 0 22px rgba(255, 215, 0, 0.9); }
+}

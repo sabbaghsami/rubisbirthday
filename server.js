@@ -11,11 +11,13 @@ const mimeTypes = {
     '.jpg': 'image/jpeg',
     '.jpeg': 'image/jpeg',
     '.png': 'image/png',
+    '.webp': 'image/webp',
+    '.svg': 'image/svg+xml',
     '.mp3': 'audio/mpeg'
 };
 
 const server = http.createServer((req, res) => {
-    let filePath = req.url === '/' ? '/index.html' : req.url;
+    let filePath = req.url.split('?')[0] === '/' ? '/index.html' : req.url.split('?')[0];
 
     // Handle parent directory access for images and music
     if (filePath.startsWith('/../')) {

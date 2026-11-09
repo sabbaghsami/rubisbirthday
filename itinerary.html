@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4efdf">
+<title></title>
+<link rel="stylesheet" href="itinerary.css?v=photos-1">
+</head>
+<body>
+<main class="paper">
+<nav><a data-config-href="back_link_url"><!--text:back_link_text--></a><span><!--text:nav_label--></span></nav>
+<header><p class="eyebrow"><!--text:date_and_location--></p><h1><!--text:heading--></h1><p class="intro"><!--text:intro_line_1--><br><!--text:intro_line_2--></p><span class="scribble"><!--text:handwritten_reminder--></span></header>
+<div class="adventure">
+<section class="map" data-config-aria-label="map_accessibility_label">
+<svg class="landscape" viewBox="0 0 700 760" aria-hidden="true">
+<defs><pattern id="waves" width="68" height="44" patternUnits="userSpaceOnUse"><path d="M10 24q10-8 20 0t20 0" fill="none" stroke="#729b9d" stroke-width="1.2" opacity=".4"/></pattern><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a4a18b" opacity=".13"/></pattern></defs>
+<rect width="700" height="760" fill="#e4e9df"/><rect width="700" height="760" fill="url(#grid)"/>
+<path d="M490-20C435 90 520 154 468 244S448 376 506 426 508 513 451 555 494 666 409 780H720V-20Z" fill="#b8d1ce"/>
+<path d="M490-20C435 90 520 154 468 244S448 376 506 426 508 513 451 555 494 666 409 780" fill="none" stroke="#e4d8b7" stroke-width="19"/>
+<path d="M490-20C435 90 520 154 468 244S448 376 506 426 508 513 451 555 494 666 409 780" fill="none" stroke="#8c9f8d" stroke-width="1.5"/>
+<path d="M510 0H700V760H510Z" fill="url(#waves)"/>
+<g fill="none" stroke="#fbf8ed" stroke-width="11"><path d="M130 760L177 539 138 337 232 185 190 0"/><path d="M0 460L204 430 400 323 460 195"/><path d="M10 640L225 601 420 627"/><path d="M0 195L204 242 391 164"/></g>
+<g fill="none" stroke="#c5c9b6" stroke-width="1"><path d="M130 760L177 539 138 337 232 185 190 0"/><path d="M0 460L204 430 400 323 460 195"/><path d="M10 640L225 601 420 627"/><path d="M0 195L204 242 391 164"/></g>
+<g fill="#c3d0b7" opacity=".7"><path d="M40 60l100 20 20 90-120-30Z"/><path d="M260 370l90-40 40 80-100 30Z"/><path d="M60 500l60-15 20 70-90 10Z"/></g>
+<path class="route" d="M111 130C50 260 102 378 203 470S340 515 364 356 411 218 436 278 374 426 435 540 463 579 434 627"/>
+<g class="map-type"><text x="548" y="300" transform="rotate(90 548 300)"><tspan data-text="map_sea"></tspan></text><text x="255" y="695"><tspan data-text="map_town"></tspan></text><text x="300" y="100" transform="rotate(-9 300 100)"><tspan data-text="map_beach"></tspan></text><text x="487" y="590" font-size="12"><tspan data-text="map_bay_line_1"></tspan></text><text x="505" y="609" font-size="12"><tspan data-text="map_bay_line_2"></tspan></text></g>
+<g stroke="#45605b" fill="none" stroke-width="2"><path d="M59 676v-53m-9 16 9-16 9 16"/><circle cx="59" cy="650" r="21"/></g><text x="54" y="614" class="map-type"><tspan data-text="map_compass"></tspan></text>
+<g fill="none" stroke="#6e7e6a" stroke-width="2"><path d="M310 570l13-24 13 24zm13-24v39m18-16 12-24 12 24zm12-24v39"/><path d="M381 658v-24h33v24m-40-24 24-18 24 18m-30 24v-13h10v13"/></g>
+</svg>
+<button class="pin p1 active" data-stop="1" data-config-aria-label="stop_1_map_accessibility_label" aria-pressed="true"><span><!--text:stop_1_map_number--></span><b><!--text:stop_1_map_label--></b></button>
+<button class="pin p2" data-stop="2" data-config-aria-label="stop_2_map_accessibility_label" aria-pressed="false"><span><!--text:stop_2_map_number--></span><b><!--text:stop_2_map_label--></b></button>
+<button class="pin p3" data-stop="3" data-config-aria-label="stop_3_map_accessibility_label" aria-pressed="false"><span><!--text:stop_3_map_number--></span><b><!--text:stop_3_map_label--></b></button>
+<button class="pin p4" data-stop="4" data-config-aria-label="stop_4_map_accessibility_label" aria-pressed="false"><span><!--text:stop_4_map_number--></span><b><!--text:stop_4_map_label--></b></button>
+<button class="pin p5" data-stop="5" data-config-aria-label="stop_5_map_accessibility_label" aria-pressed="false"><span><!--text:stop_5_map_number--></span><b><!--text:stop_5_map_label--></b></button>
+<button class="pin p6" data-stop="6" data-config-aria-label="stop_6_map_accessibility_label" aria-pressed="false"><span><!--text:stop_6_map_number--></span><b><!--text:stop_6_map_label--></b></button>
+<p class="map-note"><!--text:map_note_line_1--><br><!--text:map_note_line_2--></p><span class="map-caption"><!--text:map_caption--></span>
+</section>
+<section class="plans" data-config-aria-label="plans_accessibility_label">
+<div class="plans-heading"><span><!--text:plans_heading--></span><span><!--text:plans_subheading--></span></div>
+<details id="stop-1" open><summary><span class="number"><!--text:stop_1_number--></span><span><small><!--text:stop_1_time--></small><strong><!--text:stop_1_title--></strong></span><span class="toggle"><!--text:stop_1_toggle--></span></summary><div class="detail"><p><!--text:stop_1_description--></p><span class="place"><!--text:stop_1_place--></span></div></details>
+<details id="stop-2"><summary><span class="number"><!--text:stop_2_number--></span><span><small><!--text:stop_2_time--></small><strong><!--text:stop_2_title--></strong></span><span class="toggle"><!--text:stop_2_toggle--></span></summary><div class="detail"><p><!--text:stop_2_description--></p><span class="place"><!--text:stop_2_place--></span></div></details>
+<details id="stop-3"><summary><span class="number"><!--text:stop_3_number--></span><span><small><!--text:stop_3_time--></small><strong><!--text:stop_3_title--></strong></span><span class="toggle"><!--text:stop_3_toggle--></span></summary><div class="detail"><p><!--text:stop_3_description--></p><a data-config-href="stop_3_link_url" target="_blank" rel="noopener"><!--text:stop_3_link_text--></a><img data-config-src="stop_3_image_path" data-config-alt="stop_3_image_description" loading="lazy"></div></details>
+<details id="stop-4"><summary><span class="number"><!--text:stop_4_number--></span><span><small><!--text:stop_4_time--></small><strong><!--text:stop_4_title--></strong></span><span class="toggle"><!--text:stop_4_toggle--></span></summary><div class="detail"><p><!--text:stop_4_description--></p><span class="place"><!--text:stop_4_place--></span></div></details>
+<details id="stop-5"><summary><span class="number"><!--text:stop_5_number--></span><span><small><!--text:stop_5_time--></small><strong><!--text:stop_5_title--></strong></span><span class="toggle"><!--text:stop_5_toggle--></span></summary><div class="detail"><p><!--text:stop_5_description--></p><span class="place"><!--text:stop_5_place--></span></div></details>
+<details id="stop-6"><summary><span class="number"><!--text:stop_6_number--></span><span><small><!--text:stop_6_time--></small><strong><!--text:stop_6_title--></strong></span><span class="toggle"><!--text:stop_6_toggle--></span></summary><div class="detail"><p><!--text:stop_6_description--></p><span class="place"><!--text:stop_6_place--></span></div></details>
+</section>
+</div>
+<footer><span><!--text:footer_heading--></span><span><!--text:footer_message--></span><a data-config-href="footer_link_url"><!--text:footer_link_text--></a></footer>
+</main>
+<script src="itinerary.config.js?v=expressions-2"></script>
+<script src="itinerary-content.js?v=photos-1"></script>
+<script>
+const pins = [...document.querySelectorAll('.pin')];
+const stops = [...document.querySelectorAll('details')];
+function highlight(id) {
+  pins.forEach(pin => { const active = pin.dataset.stop === id; pin.classList.toggle('active', active); pin.setAttribute('aria-pressed', String(active)); });
+}
+pins.forEach(pin => pin.addEventListener('click', () => {
+  const selected = document.getElementById('stop-' + pin.dataset.stop);
+  stops.forEach(stop => stop.open = stop === selected);
+  highlight(pin.dataset.stop);
+  if (matchMedia('(max-width: 760px)').matches) selected.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block:'center'});
+}));
+stops.forEach(stop => stop.addEventListener('toggle', () => {
+  if (stop.open) highlight(stop.id.replace('stop-', ''));
+  else if (!stops.some(item => item.open)) highlight('');
+}));
+</script>
+</body>
+</html>

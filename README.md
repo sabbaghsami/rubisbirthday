@@ -20,25 +20,22 @@ Then open your browser to: **http://localhost:3000**
   - SPACE: Random firework
   - M: Toggle music
 
-## Deploy to Railway
-
-1. Push this `web` folder to GitHub
-2. Connect to Railway
-3. Railway will auto-detect Node.js and deploy!
-
-Your URL will be: `https://your-app.railway.app`
-
 ## Deploy to Vercel
 
+This is a static site (no build step). Import the GitHub repo in Vercel, or run:
+
 ```bash
-vercel deploy
+vercel deploy --prod
 ```
+
+`server.js` is only for running locally.
 
 ## Files
 
 - `index.html` - Main page
 - `script.js` - All animations and logic
 - `style.css` - Styling
+- `itinerary.html` - 28 Nov itinerary page
 - `server.js` - Simple Node.js server
 - `1000028077.jpg` - Birthday photo
 - `happy-birthday-rock-348157.mp3` - Background music
